@@ -1,7 +1,7 @@
 {
     "name": "ivantoz/omnipay-bardo",
     "type": "library",
-    "description": "Bardo Payments driver for the Omnipay payment processing library",
+    "description": "Paguei payment driver for the Omnipay payment processing library",
     "keywords": [
         "gateway",
         "merchant",
@@ -10,8 +10,8 @@
         "payment",
         "bardo"
     ],
-    "homepage": "https://github.com/ivantoz/omnipay-bardo",
-    "license": "MIT",
+    "homepage": "https://github.com/ivantoz/omnipay-paguei",
+    "license": "GNU",
     "authors": [
         {
             "name": "Ivan Kipyegon",
@@ -23,7 +23,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\Bardo\\" : "src/" }
+        "psr-4": { "Omnipay\\Paguei\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
