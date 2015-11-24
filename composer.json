@@ -1,5 +1,5 @@
 {
-    "name": "ivantoz/omnipay-bardo",
+    "name": "ivantoz/omnipay-paguei",
     "type": "library",
     "description": "Paguei payment driver for the Omnipay payment processing library",
     "keywords": [
