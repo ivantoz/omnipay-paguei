@@ -18,8 +18,8 @@
             "email": "ivan@bardo.com"
         },
         {
-            "name": "Omnipay Contributors",
-            "homepage": "https://github.com/ivantoz/omnipay-bardo/contributors"
+            "name": "Omnipay Paguei Contributors",
+            "homepage": "https://github.com/ivantoz/omnipay-paguei/contributors"
         }
     ],
     "autoload": {
