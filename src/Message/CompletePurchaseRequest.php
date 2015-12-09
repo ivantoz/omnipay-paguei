@@ -24,7 +24,7 @@ require_once('D:\wamp\www\pagueimagento\lib\paguei\vendor\autoload.php');
 
 
 /**
- * Paguei Complete Purchase Request
+ * Paguei.Online Payment Gateway Complete Purchase Request
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
