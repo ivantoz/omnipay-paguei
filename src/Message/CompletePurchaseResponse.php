@@ -2,12 +2,9 @@
 
 namespace Omnipay\Paguei\Message;
 
-//require_once('D:\wamp\www\sagit\app\mage.php');
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
-//require_once(Mage::getBaseDir('lib') . '/vendor/autoload.php');
-//require_once('D:\wamp\www\sagit\lib\vendor\autoload.php');
 
 /**
  * Paguei.Online Payment Gateway Purchase Response
