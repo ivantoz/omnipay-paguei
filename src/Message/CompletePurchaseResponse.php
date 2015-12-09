@@ -10,7 +10,7 @@ use Omnipay\Common\Message\RequestInterface;
 //require_once('D:\wamp\www\sagit\lib\vendor\autoload.php');
 
 /**
- * Paguei Purchase Response
+ * Paguei.Online Payment Gateway Purchase Response
  */
 class CompletePurchaseResponse extends AbstractResponse
 {
