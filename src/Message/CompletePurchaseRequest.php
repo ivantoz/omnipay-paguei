@@ -9,25 +9,23 @@ use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Exception\InvalidRequestException;
 use GuzzleHttp\Client;
 use OAuth2;
-require_once('D:\wamp\www\pagueimagento\lib\paguei\vendor\autoload.php');
-//require_once($oauth2path);
 
-//define('__ROOT__', dirname(dirname(__FILE__)));
-//define("DOCUMENT_ROOT", $_SERVER['DOCUMENT_ROOT']);
-
-//require DOCUMENT_ROOT.'/lib/vendor/autoload.php'; 
-
-//require(__ROOT__.'/lib/vendor/autoload.php'); 
-
-
-
-
+require_once('./lib/paguei/vendor/autoload.php');
 
 /**
  * Paguei.Online Payment Gateway Complete Purchase Request
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
+	public function getPath()
+	{
+		return $this->getParameter('path');
+	}
+
+	public function setPath($value)
+	{
+		return $this->setParameter('path', $value);
+	}
 	public function getClientId()
 	{
 		return $this->getParameter('clientId');
@@ -82,15 +80,7 @@ class CompletePurchaseRequest extends AbstractRequest
 	{
 		return $this->setParameter('redirecturl', $value);
 	}
-	public function getPath()
-	{
-		return $this->getParameter('path');
-	}
-
-	public function setPath($value)
-	{
-		return $this->setParameter('path', $value);
-	}
+	
 	
     public function getData()
     {
@@ -125,17 +115,9 @@ class CompletePurchaseRequest extends AbstractRequest
 			
 			$info = $response['result'];
 			$client->setAccessToken($info['access_token']);
-		 
-		//In your app you must post some required information as I mentioned in STEP 1 above
 			$id = $merchantId;
-			
-			 
-			//Please note you must urlencode the description above. Otherwise it will fail
 			$description = urlencode($description);
-			 
-				
-				
-			//please note that in the following url escape the variables appropriately,
+			
 			$urlfetch = 'https://paguei.online/app/api/transfer';
 			$urlfetch2 = $urlfetch.'/'.$id.'/'.$amount.'/'.$description.'.json';
 			$response = $client->fetch($urlfetch2);
@@ -150,15 +132,6 @@ class CompletePurchaseRequest extends AbstractRequest
 
     public function sendData($response)
      {
-		// // don't throw exceptions for 4xx errors
-		// $this->httpClient->getEventDispatcher()->addListener(
-			// 'request.error',
-			// function ($event) {
-				// if ($event['response']->isClientError()) {
-					// $event->stopPropagation();
-				// }
-			// }
-		// );
 		
         return $this->response = new CompletePurchaseResponse($this, $response);
     }
