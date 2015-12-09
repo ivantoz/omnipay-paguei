@@ -7,7 +7,7 @@ use Omnipay\Common\AbstractGateway;
  
 
 /**
- * Paguei Gateway
+ * Paguei.Online Payment Gateway
  *
  * @link https://paguei.online/docs/
  */
