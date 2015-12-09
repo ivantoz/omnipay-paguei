@@ -1,12 +1,16 @@
 <?php
 
-namespace Omnipay\Bardo\Message;
+namespace Omnipay\Paguei\Message;
+
+//require_once('D:\wamp\www\sagit\app\mage.php');
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
+//require_once(Mage::getBaseDir('lib') . '/vendor/autoload.php');
+//require_once('D:\wamp\www\sagit\lib\vendor\autoload.php');
 
 /**
- * Bardo Purchase Response
+ * Paguei Purchase Response
  */
 class CompletePurchaseResponse extends AbstractResponse
 {
@@ -32,7 +36,13 @@ class CompletePurchaseResponse extends AbstractResponse
 
     public function getMessage()
     {
-        //return isset($this->data['ResponseMessage']) ? $this->data['ResponseMessage'] : null;
+        return isset($this->data['result']['message']) ? $this->data['result']['message'] : null || isset($this->data['result']['error_description']) ? $this->data['result']['error_description'] : null;
+    }
+	public function getFullMessage()
+    {
+        return isset($this->data['result']['message']) ? $this->data['result']['message'] : null ;
+	   
+		
     }
 	public function getTransactionDate()
     {
