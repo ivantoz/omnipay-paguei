@@ -2,14 +2,25 @@
 
 namespace Omnipay\Paguei\Message;
 
+
+ 
+
 use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Exception\InvalidRequestException;
 use GuzzleHttp\Client;
 use OAuth2;
+require_once('D:\wamp\www\pagueimagento\lib\paguei\vendor\autoload.php');
+//require_once($oauth2path);
 
-// require('Client.php');
-// require('GrantType/IGrantType.php');
-// require('GrantType/AuthorizationCode.php');
+//define('__ROOT__', dirname(dirname(__FILE__)));
+//define("DOCUMENT_ROOT", $_SERVER['DOCUMENT_ROOT']);
+
+//require DOCUMENT_ROOT.'/lib/vendor/autoload.php'; 
+
+//require(__ROOT__.'/lib/vendor/autoload.php'); 
+
+
+
 
 
 /**
@@ -44,20 +55,58 @@ class CompletePurchaseRequest extends AbstractRequest
 	{
 		return $this->setParameter('merchantId', $value);
 	}
+	public function getAmount()
+	{
+		return $this->getParameter('amount');
+	}
+
+	public function setAmount($value)
+	{
+		return $this->setParameter('amount', $value);
+	}
+	public function getDescription()
+	{
+		return $this->getParameter('description');
+	}
+
+	public function setDescription($value)
+	{
+		return $this->setParameter('description', $value);
+	}
+	public function getRedirectUrl()
+	{
+		return $this->getParameter('redirecturl');
+	}
+
+	public function setRedirectUrl($value)
+	{
+		return $this->setParameter('redirecturl', $value);
+	}
+	public function getPath()
+	{
+		return $this->getParameter('path');
+	}
+
+	public function setPath($value)
+	{
+		return $this->setParameter('path', $value);
+	}
 	
     public function getData()
     {
 		$clientId= $this->getClientId();
 		$clientSecret = $this->getClientSecret();
 		$merchantId = $this->getMerchantId();
-		$amount = $this->getAmountInteger();
+		$amount = $this->getAmount();
 		$description = $this->getDescription();
+		$redirectUrl = $this->getRedirectUrl();
+		$oauth2path = $this->getPath();
 		
 		define("CLIENT_ID", $clientId);
 		define("CLIENT_SECRET", $clientSecret);
 		
 		
-		define("REDIRECT_URI", "http://localhost:8020/gateways/Bardo/completePurchase");
+		define("REDIRECT_URI", $redirectUrl);
 		define("AUTHORIZATION_ENDPOINT", "https://paguei.online/app/api/authorize");
 		define("TOKEN_ENDPOINT", "https://paguei.online/app/api/token");
   
@@ -78,9 +127,8 @@ class CompletePurchaseRequest extends AbstractRequest
 			$client->setAccessToken($info['access_token']);
 		 
 		//In your app you must post some required information as I mentioned in STEP 1 above
-			$id = "9";
-			$amount = "1";
-			$description = "Smokie";
+			$id = $merchantId;
+			
 			 
 			//Please note you must urlencode the description above. Otherwise it will fail
 			$description = urlencode($description);
@@ -88,20 +136,10 @@ class CompletePurchaseRequest extends AbstractRequest
 				
 				
 			//please note that in the following url escape the variables appropriately,
-				//$response = $client->fetch('https://paguei.online/app/api/transfer/?$id/$amount/$description.json');
+			$urlfetch = 'https://paguei.online/app/api/transfer';
+			$urlfetch2 = $urlfetch.'/'.$id.'/'.$amount.'/'.$description.'.json';
+			$response = $client->fetch($urlfetch2);
 				
-				//$response = $client->fetch('https://paguei.online/app/api/transfer/'.$id.'/'.$amount.'/'.$description.json);
-				$response = $client->fetch('https://paguei.online/app/api/transfer/9/1/productname.json');
-				
-				
-				
-			// this shows the response from the site after successful authorization. The response could have a successful transaction or a failure. See step 3 above
-				 //var_dump($response);
-				//$data = $response;
-			
-			
-			
-			
 			return $response;
 			
 		}
@@ -111,16 +149,17 @@ class CompletePurchaseRequest extends AbstractRequest
 	}
 
     public function sendData($response)
-    {
-		// don't throw exceptions for 4xx errors
-		$this->httpClient->getEventDispatcher()->addListener(
-			'request.error',
-			function ($event) {
-				if ($event['response']->isClientError()) {
-					$event->stopPropagation();
-				}
-			}
-		);
+     {
+		// // don't throw exceptions for 4xx errors
+		// $this->httpClient->getEventDispatcher()->addListener(
+			// 'request.error',
+			// function ($event) {
+				// if ($event['response']->isClientError()) {
+					// $event->stopPropagation();
+				// }
+			// }
+		// );
+		
         return $this->response = new CompletePurchaseResponse($this, $response);
     }
 
